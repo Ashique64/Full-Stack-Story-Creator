@@ -1,36 +1,69 @@
-from django.shortcuts import render
 from rest_framework import generics,status
-from .serializers import SignUpSerializer,LogInSerializer,UserSerializer
-from rest_framework.response import Response
-from rest_framework_simplejwt.tokens import RefreshToken
+from .serializers import UserSerialzer
 from django.contrib.auth.models import User
+from rest_framework.response import Response
+from django.db import IntegrityError
+from rest_framework.views import APIView
+from django.contrib.auth import authenticate,login,logout
+from rest_framework_simplejwt.tokens import RefreshToken
+
 
 
 # Create your views here.
 
 
-class SignUpView(generics.GenericAPIView):
-    serializer_class = SignUpSerializer
+class SignUpView(generics.CreateAPIView):
     
-    def post(self,request,*arg,**kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.save()
-        return Response({
-            'user':UserSerializer(user).data,
-            'message':"User Created Successfully"
-        }, status = status.HTTP_201_CREATED)
+    def post(self,request):
+        serializer = UserSerialzer(data = request.data)
+        if serializer.is_valid():
+            try:
+                userName = serializer.validated_data.get('username')
+                
+                if User.objects.filter(username = userName).exists():
+                    return Response({
+                        "error":"User Name Already Exist"
+                    },status=status.HTTP_406_NOT_ACCEPTABLE)
+                serializer.save()
+                return Response({
+                    "status":"success",
+                    "message":"User Registered Successfully",
+                    "user":serializer.data
+                },status=status.HTTP_201_CREATED)
+            except IntegrityError as e:
+                return Response({
+                    "error":"An error occuared. Please try again later"
+                }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        else:
+            return Response (serializer.errors,status=status.HTTP_406_NOT_ACCEPTABLE)
+                
+                
+                
+class LogInView(APIView):
+    
+    def post(self,request):
+        username = request.data.get('username')
+        password = request.data.get('password')
         
-class LogInView(generics.GenericAPIView):
-    serializer_class = LogInSerializer
-    
-    def post(self,request,*arg,**kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data
-        refresh = RefreshToken.for_user(user)
-        return Response({
-            "user":UserSerializer(user).data,
-            "refresh":str(refresh),
-            "access":str(refresh.access_token)
-        }, status=status.HTTP_200_OK)
+        if username and password:
+            user = authenticate(username=username,password=password)
+            
+            if user is not None:
+                login(request,user)
+                refresh = RefreshToken.for_user(user)
+                serializer = UserSerialzer(user)
+                return Response ({
+                    "status":"success",
+                    "message":"Login Successful",
+                    "user":serializer.data,
+                    "refresh": str(refresh),
+                    "access":str(refresh.access_token)
+                }, status=status.HTTP_200_OK)
+            else:
+                return Response({
+                    "error":"Invaldi Username and Password"
+                }, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response({
+                "error":"Username and Password required"
+            }, status=status.HTTP_401_UNAUTHORIZED)

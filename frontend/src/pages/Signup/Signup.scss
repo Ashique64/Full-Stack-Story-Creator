@@ -1,0 +1,60 @@
+.container-fluid {
+    background-color: rgba(0, 0, 0, 0.908);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .signup{
+        border: 1.5px solid rgb(212, 195, 39);
+        border-radius: 10px;
+        padding: 30px;
+        min-width: 340px;
+        margin: 20px;
+        box-shadow: 0 4px 8px rgba(196, 221, 10, 0.3);
+
+        h2 {
+            color: rgb(209, 148, 74);
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px ;
+
+
+            .item {
+                display: flex;
+                flex-direction: column;
+                width: 300px;
+
+                label {
+                    color: rgb(212, 195, 39);
+                    margin: 6px;
+                    font-weight: 600;
+                }
+            }
+
+            button {
+
+                background-color: rgb(209, 148, 74);
+                margin-top: 15px;
+                font-size: 14px;
+                font-weight: bold;
+                padding: 8px 15px;
+                letter-spacing: 1px;
+                color: rgb(41, 40, 37);
+                transition: 0.3s ease-in-out;
+
+                &:hover {
+                    outline: 1.5px solid rgb(212, 195, 39);
+                    color: rgb(212, 195, 39);
+                    background-color: transparent;
+                }
+                
+            }
+        }
+    }
+}
