@@ -19,10 +19,15 @@ class SignUpView(generics.CreateAPIView):
         if serializer.is_valid():
             try:
                 userName = serializer.validated_data.get('username')
+                email = serializer.validated_data.get('emial')
                 
                 if User.objects.filter(username = userName).exists():
                     return Response({
-                        "error":"User Name Already Exist"
+                        "error":"Username is Already Exist"
+                    },status=status.HTTP_406_NOT_ACCEPTABLE)
+                if User.objects.filter(email = email).exists():
+                    return Response({
+                        "error":"Email is Already Exist"
                     },status=status.HTTP_406_NOT_ACCEPTABLE)
                 serializer.save()
                 return Response({
