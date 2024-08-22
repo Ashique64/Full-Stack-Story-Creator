@@ -1,19 +1,28 @@
 from rest_framework import serializers
-from .models import Story,Contribution
+from .models import Story, Contribution
+
+
+class ContributionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Contribution
+        fields = '__all__'
 
 
 class StorySerializer(serializers.ModelSerializer):
-    
-    created_by = serializers.ReadOnlyField(source='created_by.username')
-    
+
+    contributions = ContributionSerializer(many=True, read_only=True)
+
     class Meta:
         model = Story
         fields = '__all__'
         
-class ContributionSerializer(serializers.ModelSerializer):
-    
-    author = serializers.ReadOnlyField(source='author.username')
-    
+class StoryCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Story
+        fields = ['title', 'image']
+
+class ContributionCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contribution
-        fields = '__all__'
+        fields = ['content']

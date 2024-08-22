@@ -19,7 +19,7 @@ class SignUpView(generics.CreateAPIView):
         if serializer.is_valid():
             try:
                 userName = serializer.validated_data.get('username')
-                email = serializer.validated_data.get('emial')
+                email = serializer.validated_data.get('email')
                 
                 if User.objects.filter(username = userName).exists():
                     return Response({

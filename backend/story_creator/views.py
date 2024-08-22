@@ -1,45 +1,40 @@
 from django.shortcuts import render
 from rest_framework import generics,permissions
 from .models import Story,Contribution
-from .serializers import StorySerializer,ContributionSerializer
+from .serializers import StorySerializer,StoryCreateSerializer,ContributionCreateSerializer
+from rest_framework.exceptions import ValidationError
+
 # Create your views here.
 
 
-class StoryList(generics.ListCreateAPIView):
+class StoryCreateView(generics.CreateAPIView):
     queryset = Story.objects.all()
-    serializer_class = StorySerializer
+    serializer_class = StoryCreateSerializer
     permission_classes = [permissions.IsAuthenticated]
     
     def perform_create(self,serializer):
         serializer.save(created_by=self.request.user)
         
 
-class StoryDetailView(generics.RetrieveAPIView):
-    queryset = Story.objects.all()
+class StoryListView(generics.ListAPIView):
+    queryset = Story.objects.all().order_by('-created_at')
     serializer_class = StorySerializer
-    permission_class = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
     
     
-class ContibutionListView(generics.ListAPIView):
-    serializer_class = ContributionSerializer
-    permission_class = [permissions.IsAuthenticated]
+class ContributionCreateView(generics.CreateAPIView):
+    queryset = Contribution.objects.all()
+    serializer_class = ContributionCreateSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def perform_create(self, serializer):
+        story = Story.objects.get(id=self.kwargs['story_id'])
+        if story.contributions.count() >= 10:
+            raise ValidationError("This story has reached the maximum number of contributions.")
+        serializer.save(user=self.request.user, story=story)
     
-    def get_query(self):
-        story_id = self.kwarg['story_id']
-        return Contribution.objects.filter(story_id=story_id)
     
 
-class ContibutionCreateView(generics.CreateAPIView):
-    serializer_class = ContributionSerializer
-    permission_class = [permissions.IsAuthenticated]
-    
-    def perform_create(self,serializer):
-        story = Story.objects.get(id=self.kwargs['story_id'])
-        if story.contributions.count() >= 4:
-            story.is_completed = True
-            story.save()
-            raise serializer.ValidationError("This story is already completed")
-        serializer.save(author=self.request.user, story=story)
         
 
     
