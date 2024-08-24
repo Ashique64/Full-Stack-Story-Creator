@@ -1,0 +1,66 @@
+.create_story {
+    background-color: #FDF7E4;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 10px;
+
+    .item {
+        border-radius: 20px;
+        padding: 40px;
+        padding-bottom: 20px;
+        background-color: rgb(233, 140, 26);
+        outline: 2px solid rgb(233, 140, 26);
+        color: #FDF7E4;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5), 0 6px 20px rgba(0, 0, 0, 0.5);
+        transition: 0.4s ease-in-out;
+
+
+        h2 {
+        font-family: "New Amsterdam", sans-serif;
+        cursor: pointer;
+        letter-spacing: 3px;
+        font-size: 46px;
+        margin-bottom: 30px;
+
+        }
+
+        form {
+            margin: 10px;
+
+            .field{
+                text-align: start;
+                margin: 10px 0px;
+                
+                label {
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+                
+                input {
+                    border: 2px solid rgb(233, 140, 26);
+                }
+
+                textarea {
+                    border: 2px solid rgb(233, 140, 26);
+                }
+            }
+
+            button {
+                margin: 15px 0px 5px 0px;
+                outline: 2px solid #FDF7E4;
+                color: #FDF7E4;
+                padding: 6px 20px;
+                font-weight: 700;
+                transition: 0.3s ease-in-out;
+
+                &:hover {
+                    outline: 2px solid rgb(233, 140, 26);
+                    color: rgb(233, 140, 26);
+                }
+            }
+
+        }
+    }
+}

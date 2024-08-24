@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/Authentication/AuthSlice";
 import "./Login.scss";
 
 const Login = () => {
@@ -8,6 +10,7 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
+    const dispatch = useDispatch()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -17,6 +20,7 @@ const Login = () => {
                 password,
             });
             localStorage.setItem("token", response.data.access);
+            dispatch(login({username}));
             navigate("/");
         } catch (error) {
             setError("Invalid credentials");
@@ -24,7 +28,7 @@ const Login = () => {
     };
 
     return (
-        <div className="container-fluid">
+        <div className="container-fluid login_container">
             <div className="login">
                 <h2>Login</h2>
                 <form onSubmit={handleSubmit}>

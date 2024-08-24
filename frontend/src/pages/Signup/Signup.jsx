@@ -31,7 +31,7 @@ const Signup = () => {
     };
 
     return (
-        <div className="container-fluid">
+        <div className="container-fluid signup_container">
             <div className="signup">
                 <h2>SignUp</h2>
                 <form onSubmit={handleSubmit}>

@@ -7,6 +7,7 @@ from rest_framework.exceptions import ValidationError
 # Create your views here.
 
 
+
 class StoryCreateView(generics.CreateAPIView):
     queryset = Story.objects.all()
     serializer_class = StoryCreateSerializer
@@ -17,9 +18,11 @@ class StoryCreateView(generics.CreateAPIView):
         
 
 class StoryListView(generics.ListAPIView):
-    queryset = Story.objects.all().order_by('-created_at')
     serializer_class = StorySerializer
     permission_classes = [permissions.IsAuthenticated]
+    
+    def get_queryset(self):
+        return Story.objects.filter(created_by=self.request.user).order_by('-created_at')
     
     
 class ContributionCreateView(generics.CreateAPIView):
