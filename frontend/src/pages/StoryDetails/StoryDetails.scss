@@ -1,0 +1,54 @@
+.details_page {
+    background-color: #fdf7e4;
+
+    .story_details_page {
+        min-height: 80vh;
+        padding: 80px 60px;
+
+        .story_img {
+            width: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            outline: 3px solid rgb(233, 140, 26);
+            cursor: pointer;
+
+            img {
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .story_info {
+            text-align: start;
+            margin-left: 20px;
+            padding: 10px;
+            margin-bottom: 50px;
+
+            h6 {
+                background-color: rgb(233, 140, 26);
+                display: inline-block;
+                padding: 5px 10px;
+                border-radius: 15px;
+            }
+
+            h3 {
+                color: rgb(233, 140, 26);
+                margin-bottom: 20px;
+            }
+
+            .btn {
+                outline: 2px solid rgb(233, 140, 26);
+                color: rgb(233, 140, 26);
+                font-weight: 700;
+                padding: 8px;
+                transition: 0.3s ease-in-out;
+
+                &:hover {
+                    color: #fdf7e4;
+                    background-color: rgb(233, 140, 26);
+                    outline: 2px solid #fdf7e4;
+                }
+            }
+        }
+    }
+}
