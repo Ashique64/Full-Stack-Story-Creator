@@ -30,8 +30,8 @@ const MyAccount = () => {
         fetchStories();
     }, []);
 
-    const handleCard = () => {
-        navigate("/storydetails");
+    const handleCard = (storyId) => {
+        navigate(`/storydetails/${storyId}`);
     };
 
     const handleLogout = () => {
@@ -48,7 +48,7 @@ const MyAccount = () => {
                             <div className="row">
                                 {stories.length > 0 ? (
                                     stories.map((story) => (
-                                        <div onClick={handleCard} className="col-md-4 your_story_card" key={story.id}>
+                                        <div onClick={() => handleCard(story.id)} className="col-md-4 your_story_card" key={story.id}>
                                             <div className="story_card">
                                                 <img src={story.image || "ImagesstaticCarouselBook1.jpg"} alt="" />
                                                 <h5>{story.title}</h5>
@@ -86,11 +86,13 @@ const MyAccount = () => {
                         }}
                     >
                         <div className="profile_details">
-                            <h5>
-                                <FontAwesomeIcon icon={faUser} />
-                            </h5>
-                            <h3>UserName</h3>
-                            <h6>Email</h6>
+                            <div>
+                                <h5>
+                                    <FontAwesomeIcon icon={faUser} />
+                                </h5>
+                                <h3>UserName</h3>
+                                <h6>Email</h6>
+                            </div>
                             <button
                                 className="btn logout"
                                 onMouseEnter={() => setIsHovered(true)}

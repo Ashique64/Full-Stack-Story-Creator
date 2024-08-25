@@ -20,7 +20,7 @@ class StorySerializer(serializers.ModelSerializer):
 class StoryCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Story
-        fields = ['title', 'image']
+        fields = ['title', 'image', 'first_line']
 
 class ContributionCreateSerializer(serializers.ModelSerializer):
     class Meta:

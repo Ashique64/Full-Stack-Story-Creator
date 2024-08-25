@@ -19,8 +19,12 @@ const StoryCreate = () => {
             return;
         }
 
+        const wordCount = firstLine.trim().split(/\s+/).length;
         if (!firstLine.trim()) {
             setError("First line of the story is required");
+            return;
+        } else if (wordCount > 20) {
+            setError("First line cannot exceed 20 words");
             return;
         }
 

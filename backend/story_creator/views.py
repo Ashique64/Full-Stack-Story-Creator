@@ -24,6 +24,11 @@ class StoryListView(generics.ListAPIView):
     def get_queryset(self):
         return Story.objects.filter(created_by=self.request.user).order_by('-created_at')
     
+class StoryDetailView(generics.RetrieveDestroyAPIView):
+    queryset = Story.objects.all()
+    serializer_class = StorySerializer
+    permission_classes = [permissions.IsAuthenticated]
+    
     
 class ContributionCreateView(generics.CreateAPIView):
     queryset = Contribution.objects.all()

@@ -22,6 +22,8 @@ const NavBar = () => {
     }
   }
 
+
+
   const handleUserIconClick = () => {
     if (isAuthenticated) {
       navigate('/myaccount')
@@ -29,6 +31,10 @@ const NavBar = () => {
       alert('Please Login to create a new story')
       navigate('/login')
     }
+  }
+
+  const handleCompleteNavigate = () => {
+    navigate("/completed/stories")
   }
 
   return (
@@ -39,7 +45,7 @@ const NavBar = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="#features">Home</Nav.Link>
-            <Nav.Link href="#pricing">Completed</Nav.Link>
+            <Nav.Link onClick={handleCompleteNavigate} >Completed</Nav.Link>
             <Nav.Link href="#pricing">On-Going</Nav.Link>
           </Nav>
           <Nav>

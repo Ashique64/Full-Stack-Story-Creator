@@ -16,11 +16,17 @@ def validate_image_extension(image):
     extension = image.name.split('.')[-1].lower()
     if extension not in valid_extensions:
         raise ValidationError("Allowed file types are: jpg, jpeg, png")
+    
+def validate_max_words(value):
+    words = value.split()
+    if len(words) > 20:
+        raise ValidationError("The first line cannot exceed 20 words.")
 
 
 class Story(models.Model):
     title = models.CharField(max_length=255)
     image = models.ImageField(upload_to='stories/images/', validators=[validate_image_size, validate_image_extension])
+    first_line = models.TextField(validators=[validate_max_words])
     created_by = models.ForeignKey(User,on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     is_completed = models.BooleanField(default=True)
