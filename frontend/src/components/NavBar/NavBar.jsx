@@ -45,7 +45,7 @@ const NavBar = () => {
     return (
         <Navbar collapseOnSelect expand="lg">
             <Container>
-                <Navbar.Brand href="#home">STORY CRAFT</Navbar.Brand>
+                <Navbar.Brand onClick={handleHomeNavigate}>STORY CRAFT</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">

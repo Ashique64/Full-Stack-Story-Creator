@@ -33,7 +33,7 @@ class Story(models.Model):
     
     
     def __str__(self) :
-        return self.title
+        return f'{self.title} by {self.created_by.username}'
     
     def check_completion(self):
         total_contributions = self.contributions.count() + 1

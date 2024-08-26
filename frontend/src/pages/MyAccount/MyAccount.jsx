@@ -5,6 +5,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useSelector } from "react-redux";
 import "./MyAccount.scss";
 
 const MyAccount = () => {
@@ -12,6 +13,7 @@ const MyAccount = () => {
     const [error, setError] = useState("");
     const [isHovered, setIsHovered] = useState(false);
     const navigate = useNavigate();
+    const {username} = useSelector((state) => state.auth)
 
     useEffect(() => {
         const fetchStories = async () => {
@@ -37,6 +39,7 @@ const MyAccount = () => {
     const handleLogout = () => {
         navigate("/login");
     };
+
     return (
         <>
             <NavBar />
@@ -90,8 +93,7 @@ const MyAccount = () => {
                                 <h5>
                                     <FontAwesomeIcon icon={faUser} />
                                 </h5>
-                                <h3>UserName</h3>
-                                <h6>Email</h6>
+                                <h3>{username}</h3>
                             </div>
                             <button
                                 className="btn logout"

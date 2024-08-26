@@ -12,6 +12,7 @@ class ContributionSerializer(serializers.ModelSerializer):
 class StorySerializer(serializers.ModelSerializer):
 
     contributions = ContributionSerializer(many=True, read_only=True)
+    created_by = serializers.CharField(source='created_by.username', read_only=True)
 
     class Meta:
         model = Story

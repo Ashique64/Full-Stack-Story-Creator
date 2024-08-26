@@ -32,14 +32,14 @@ class StoryDetailView(generics.RetrieveDestroyAPIView):
     
 class CompletedStoriesListView(generics.ListAPIView):
     serializer_class = StorySerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
     
     def get_queryset(self):
         return Story.objects.filter(is_completed = True).order_by('-created_at')
     
 class OnGoingStoriesListView(generics.ListAPIView):
     serializer_class = StorySerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
     
     def get_queryset(self):
         return Story.objects.filter(is_completed = False).order_by('-created_at')

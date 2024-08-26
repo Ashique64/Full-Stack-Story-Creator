@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "./OnGoingStories.scss";
 
 const OnGoingStories = () => {
     const [onGoingStories, setOnGoingStories] = useState([]);
     const [error, setError] = useState("");
+    const navigate = useNavigate()
 
     useEffect(() => {
         const fetchOnGoingStories = async () => {
@@ -24,6 +26,10 @@ const OnGoingStories = () => {
         fetchOnGoingStories();
     }, []);
 
+    const handleCard = (storyId) => {
+        navigate(`/storydetails/${storyId}`);
+    };
+
     return (
         <>
             <NavBar />
@@ -36,7 +42,7 @@ const OnGoingStories = () => {
                 ) : (
                     <div className="row">
                         {onGoingStories.map((story) => (
-                            <div key={story.id} className="col-sm-6 col-md-3 item">
+                            <div onClick={() => handleCard(story.id)} key={story.id} className="col-sm-6 col-md-3 item">
                                 <div className="ongoing_story_card">
                                     <img src={story.image || "/Images/static/CarouselBook2.jpg"} alt="" />
                                     <h5>{story.title}</h5>
