@@ -30,6 +30,21 @@ class StoryDetailView(generics.RetrieveDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated]
     
     
+class CompletedStoriesListView(generics.ListAPIView):
+    serializer_class = StorySerializer
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def get_queryset(self):
+        return Story.objects.filter(is_completed = True).order_by('-created_at')
+    
+class OnGoingStoriesListView(generics.ListAPIView):
+    serializer_class = StorySerializer
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def get_queryset(self):
+        return Story.objects.filter(is_completed = False).order_by('-created_at')
+    
+    
 class ContributionCreateView(generics.CreateAPIView):
     queryset = Contribution.objects.all()
     serializer_class = ContributionCreateSerializer
@@ -41,8 +56,5 @@ class ContributionCreateView(generics.CreateAPIView):
             raise ValidationError("This story has reached the maximum number of contributions.")
         serializer.save(user=self.request.user, story=story)
     
-    
-
-        
 
     

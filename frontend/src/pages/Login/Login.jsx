@@ -27,6 +27,10 @@ const Login = () => {
         }
     };
 
+    const handleSignupNavigate = () =>{
+        navigate('/signup')
+    }
+
     return (
         <div className="container-fluid login_container">
             <div className="login">
@@ -40,8 +44,9 @@ const Login = () => {
                         <label>Password</label>
                         <input className="form-control" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
                     </div>
-                    {error && <p style={{ color: "red" }}>{error}</p>}
+                    <h6>Don't have an account ? <span onClick={handleSignupNavigate}>Signup</span></h6>
                     <button className="btn" type="submit">LOG-IN</button>
+                    {error && <p className="mt-2" style={{ color: "red" }}>{error}</p>}
                 </form>
             </div>
         </div>

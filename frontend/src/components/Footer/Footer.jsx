@@ -3,16 +3,16 @@ import "./Footer.scss"
 
 const Footer = () => {
   return (
-    <div class="footer_container">
-            <div class="row footer">
-                <div class="col-md-6 brand">
+    <div className="footer_container">
+            <div className="row footer">
+                <div className="col-md-6 brand">
                     <a href="">STORY CRAFT</a>
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur nobis cumque soluta natus enim,
                         blanditiis autem cupiditate molestias
                     </p>
                 </div>
-                <div class="col-md-3 footer_links">
+                <div className="col-md-3 footer_links">
                     <ul>
                         <li>About</li>
                         <li>Contact Us</li>
@@ -20,7 +20,7 @@ const Footer = () => {
                         <li>OnGoing Books</li>
                     </ul>
                 </div>
-                <div class="col-md-3 footer_links">
+                <div className="col-md-3 footer_links">
                     <ul>
                         <li>Frequantly Asked Questions</li>
                         <li>Terms & Conditions</li>
@@ -30,7 +30,7 @@ const Footer = () => {
                 </div>
             </div>
 
-            <div class="row copy_right">
+            <div className="row copy_right">
                 <h4>Copyright &copy;2024 All rights reserved</h4>
             </div>
         </div>

@@ -37,6 +37,22 @@
                 }
             }
 
+            h6 {
+                color: rgb(212, 195, 39);
+                font-size: 12px;
+                margin-top: 10px;
+                margin-left: 100px;
+
+                span {
+                    cursor: pointer;
+                    font-size: 14px;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+
             button {
                 background-color: rgb(209, 148, 74);
                 margin-top: 15px;

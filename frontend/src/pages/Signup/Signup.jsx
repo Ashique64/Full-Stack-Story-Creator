@@ -30,6 +30,10 @@ const Signup = () => {
         }
     };
 
+    const handleLoginNavigate = () => {
+        navigate('/login')
+    }
+
     return (
         <div className="container-fluid signup_container">
             <div className="signup">
@@ -57,8 +61,9 @@ const Signup = () => {
                             required
                         />
                     </div>
-                    {error && <p style={{ color: "red" }}>{error}</p>}
+                    <h6>Already have an account ? <span onClick={handleLoginNavigate}>Login</span></h6>
                     <button className="btn" type="submit">SIGN-UP</button>
+                    {error && <p className="mt-2" style={{ color: "red" }}>{error}</p>}
                 </form>
             </div>
         </div>

@@ -38,6 +38,23 @@
                 }
             }
 
+            h6 {
+                color: rgb(212, 195, 39);
+                font-size: 12px;
+                margin-top: 10px;
+                margin-left: 100px;
+
+                span {
+                    cursor: pointer;
+                    font-size: 14px;
+                    
+                    &:hover {
+                        text-decoration: underline;
+                        
+                    }
+                }
+            }
+
             button {
 
                 background-color: rgb(209, 148, 74);
@@ -45,6 +62,7 @@
                 font-size: 14px;
                 font-weight: bold;
                 padding: 8px 15px;
+                width: 100%;
                 letter-spacing: 1px;
                 color: rgb(41, 40, 37);
                 transition: 0.3s ease-in-out;

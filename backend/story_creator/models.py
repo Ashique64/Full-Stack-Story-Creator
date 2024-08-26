@@ -29,11 +29,20 @@ class Story(models.Model):
     first_line = models.TextField(validators=[validate_max_words])
     created_by = models.ForeignKey(User,on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
-    is_completed = models.BooleanField(default=True)
+    is_completed = models.BooleanField(default=False)
     
     
     def __str__(self) :
         return self.title
+    
+    def check_completion(self):
+        total_contributions = self.contributions.count() + 1
+        if total_contributions >= 10:
+            self.is_completed = True
+        else:
+            self.is_completed = False
+            
+        self.save()
     
     
 class Contribution(models.Model):
@@ -43,8 +52,13 @@ class Contribution(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     
     def clean(self):
-        if self.story.contributions.count() >= 10:
+        if self.story.contributions.count() >= 9:
             raise ValidationError("This story has reached the maximum number of contributions.")
+        
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        
+        self.story.check_completion()
     
     
     def __str__(self) :
