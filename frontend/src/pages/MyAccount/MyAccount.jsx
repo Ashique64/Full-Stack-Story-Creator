@@ -63,23 +63,6 @@ const MyAccount = () => {
                                 )}
                             </div>
                         </div>
-                        <div className="contibuted_stories">
-                            <h2>Your Contributed Stories</h2>
-                            <div className="row">
-                                {stories.length > 0 ? (
-                                    stories.map((story) => (
-                                        <div onClick={handleCard} className="col-md-4 contibute_story_card" key={story.id}>
-                                            <div className="story_card">
-                                                <img src={story.image || "ImagesstaticCarouselBook1.jpg"} alt="" />
-                                                <h5>{story.title}</h5>
-                                            </div>
-                                        </div>
-                                    ))
-                                ) : (
-                                    <p>No stories available.</p>
-                                )}
-                            </div>
-                        </div>
                     </div>
                     <div
                         className="col-md-3 item2 profile"

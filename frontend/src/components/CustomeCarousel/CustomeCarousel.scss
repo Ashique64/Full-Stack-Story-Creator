@@ -19,23 +19,23 @@
 
                     a > button {
                         background-color: transparent;
-                        color: rgb(233, 140, 26);
+                        color: #F0EBE3;
                         margin: 20px;
                         padding: 10px;
                         font-weight: bold;
                         transition: 0.4s ease-in-out;
-                        border: 1.5px solid rgb(233, 140, 26);
+                        border: 1.5px solid #F0EBE3;
                         animation: pulse 1s infinite ease-in-out;
                         
                         &:hover {
                             background-color: transparent;
-                            border: 1.5px solid #F0EBE3;
-                            color: #F0EBE3;
+                            border: 1.5px solid rgb(233, 140, 26);
+                            color: rgb(233, 140, 26);
                         }
                     }
                     
                     p {
-                        color: rgb(161, 98, 22);
+                        color: #F0EBE3;
                         font-weight: bold;
                     }
                 }

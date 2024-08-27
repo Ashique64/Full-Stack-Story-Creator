@@ -21,7 +21,7 @@ const CustomeCarousel = () => {
     return (
         <Carousel data-bs-theme="dark">
             <Carousel.Item>
-                <img className="d-block w-100" src="\Images\static\CarouselBook2.jpg" alt="First slide" />
+                <img className="d-block w-100" src="\Images\static\book3.jpg" alt="First slide" />
                 <Carousel.Caption>
                     <a href="">
                         <Button onClick={handleCreateButton}>Add a Story</Button>
@@ -30,7 +30,7 @@ const CustomeCarousel = () => {
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
-                <img className="d-block w-100" src="\Images\static\CarouselBook3.jpg" alt="Second slide" />
+                <img className="d-block w-100" src="\Images\static\book1.jpg" alt="Second slide" />
                 <Carousel.Caption>
                     <a href="">
                         <Button onClick={handleCreateButton}>Add a Story</Button>
@@ -39,7 +39,7 @@ const CustomeCarousel = () => {
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
-                <img className="d-block w-100" src="\Images\static\CarouselBook1.jpg" alt="Third slide" />
+                <img className="d-block w-100" src="\Images\static\book2.jpg" alt="Third slide" />
                 <Carousel.Caption>
                     <a href="">
                         <Button onClick={handleCreateButton}>Add a Story</Button>
