@@ -52,9 +52,9 @@ class ContributionCreateView(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         story = Story.objects.get(id=self.kwargs['story_id'])
-        if story.contributions.count() >= 10:
+        if story.contributions.count() >= 9:
             raise ValidationError("This story has reached the maximum number of contributions.")
-        serializer.save(user=self.request.user, story=story)
+        serializer.save(author=self.request.user, story=story)
     
 
     

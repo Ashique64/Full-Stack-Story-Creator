@@ -48,7 +48,7 @@ class Story(models.Model):
 class Contribution(models.Model):
     story = models.ForeignKey(Story, on_delete=models.CASCADE, related_name='contributions')
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    content = models.CharField(max_length=200)
+    content = models.CharField(max_length=200, validators=[validate_max_words])
     created_at = models.DateTimeField(auto_now_add=True)
     
     def clean(self):

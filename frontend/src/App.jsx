@@ -1,5 +1,6 @@
 import './App.css'
 import CompletedStories from './pages/CompletedStories/CompletedStories';
+import ContributionCreate from './pages/ContributionCreate/ContributionCreate';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login'
 import MyAccount from './pages/MyAccount/MyAccount';
@@ -24,6 +25,7 @@ function App() {
                 <Route path="/storydetails/:id" element={<StoryDetails/>} />
                 <Route path="/completed/stories" element={<CompletedStories/>} />
                 <Route path="/ongoing/stories" element={<OnGoingStories/>} />
+                <Route path="/storydetails/:id/contribute" element={<ContributionCreate/>} />
             </Routes>
         </Router>
     </>

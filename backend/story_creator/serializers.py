@@ -27,3 +27,4 @@ class ContributionCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contribution
         fields = ['content']
+        

@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./OnGoingList.scss";
 
 const OnGoingList = () => {
     const [onGoingStories, setOnGoingStories] = useState([]);
     const [error, setError] = useState("");
     const navigate = useNavigate()
+    const displayedStories = onGoingStories.slice(0, 4);
+    const {isAuthenticated} = useSelector((state) => state.auth)
+
 
     useEffect(() => {
         const fetchOnGoingStories = async () => {
@@ -23,10 +27,14 @@ const OnGoingList = () => {
         fetchOnGoingStories();
     }, []);
 
-    const displayedStories = onGoingStories.slice(0, 4);
 
     const handleCard = (storyId) => {
-        navigate(`/storydetails/${storyId}`);
+        if(isAuthenticated) {
+            navigate(`/storydetails/${storyId}`);
+        } else {
+            alert("Please Login to create a new story");
+            navigate("/login");
+        }
     };
 
     return (
