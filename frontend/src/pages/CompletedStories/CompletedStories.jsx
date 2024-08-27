@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import "./CompletedStories.scss";
 
 const CompletedStories = () => {
     const [completedStories, setCompletedStories] = useState([]);
     const [error, setError] = useState("");
+    const {isAuthenticated} = useSelector((state) => state.auth)
+    const navigate = useNavigate()
 
 
     useEffect(() => {
@@ -20,12 +24,19 @@ const CompletedStories = () => {
                 setCompletedStories(response.data);
             } catch (err) {
                 setError("Failed to fetch Completed Stories");
-            } finally {
-                setLoading(false);
             }
         };
         fetchCompletedStories();
     }, []);
+
+    const handleCard = (storyId) => {
+        if(isAuthenticated) {
+            navigate(`/storydetails/${storyId}`);
+        } else {
+            alert("Please Login to create a new story");
+            navigate("/login");
+        }
+    };
 
     return (
         <>
@@ -39,7 +50,7 @@ const CompletedStories = () => {
                 ) : (
                     <div className="row">
                         {completedStories.map((story) => (
-                            <div key={story.id} className="col-sm-6 col-md-3 item">
+                            <div onClick={() => handleCard(story.id)} key={story.id} className="col-sm-6 col-md-3 item">
                                 <div className="completed_story_card">
                                     <img src={story.image || "/Images/static/CarouselBook2.jpg"} alt={story.title} />
                                     <h5>{story.title}</h5>

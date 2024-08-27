@@ -7,9 +7,9 @@ import "./OnGoingList.scss";
 const OnGoingList = () => {
     const [onGoingStories, setOnGoingStories] = useState([]);
     const [error, setError] = useState("");
-    const navigate = useNavigate()
     const displayedStories = onGoingStories.slice(0, 4);
     const {isAuthenticated} = useSelector((state) => state.auth)
+    const navigate = useNavigate()
 
 
     useEffect(() => {

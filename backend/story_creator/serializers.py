@@ -3,7 +3,7 @@ from .models import Story, Contribution
 
 
 class ContributionSerializer(serializers.ModelSerializer):
-
+    
     class Meta:
         model = Contribution
         fields = '__all__'
@@ -24,6 +24,8 @@ class StoryCreateSerializer(serializers.ModelSerializer):
         fields = ['title', 'image', 'first_line']
 
 class ContributionCreateSerializer(serializers.ModelSerializer):
+    
+    
     class Meta:
         model = Contribution
         fields = ['content']

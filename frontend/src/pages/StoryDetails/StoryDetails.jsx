@@ -29,6 +29,9 @@ const StoryDetails = () => {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
             });
+            // console.log(response.data)
+            console.log(response.data.contributions);
+
             setStory(response.data);
         } catch (err) {
             setError("Failed to fetch details");

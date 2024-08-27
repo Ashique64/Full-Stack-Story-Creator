@@ -62,4 +62,4 @@ class Contribution(models.Model):
     
     
     def __str__(self) :
-        return f'Contribution by {self.auther.username} to {self.story.title}'
+        return f'Contribution by {self.author.username} to {self.story.title}'

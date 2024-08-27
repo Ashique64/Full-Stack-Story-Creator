@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
 import axios from "axios";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "./OnGoingStories.scss";
 
 const OnGoingStories = () => {
     const [onGoingStories, setOnGoingStories] = useState([]);
     const [error, setError] = useState("");
+    const {isAuthenticated} = useSelector((state) => state.auth)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -27,7 +29,12 @@ const OnGoingStories = () => {
     }, []);
 
     const handleCard = (storyId) => {
-        navigate(`/storydetails/${storyId}`);
+        if(isAuthenticated) {
+            navigate(`/storydetails/${storyId}`);
+        } else {
+            alert("Please Login to create a new story");
+            navigate("/login");
+        }
     };
 
     return (
